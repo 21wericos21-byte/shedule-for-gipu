@@ -1,0 +1,716 @@
+[
+  {
+    "teacherId": "ЮговаНЛ",
+    "teacherFullName": "Югова Наталья Леонидовна",
+    "teacherName": "Югова Н.Л.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "КазариновАС",
+    "teacherFullName": "Казаринов Анатолий Сергеевич",
+    "teacherName": "Казаринов А.С.",
+    "teacherRank": "д. пед.наук"
+  },
+  {
+    "teacherId": "ДюкинаНГ",
+    "teacherFullName": "Дюкина Наталья Геннадиевна",
+    "teacherName": "Дюкина Н.Г.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "КамаловРР",
+    "teacherFullName": "Камалов Ренат Рифович",
+    "teacherName": "Камалов Р.Р.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "КутявинаЛЛ",
+    "teacherFullName": "Кутявина Любовь Леонидовна",
+    "teacherName": "Кутявина Л.Л.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "ЛеонтьеваНВ",
+    "teacherFullName": "Леонтьева Наталия Владимировна",
+    "teacherName": "Леонтьева Н.В.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "ХлобыстоваИЮ",
+    "teacherFullName": "Хлобыстова Ирина Юрьевна",
+    "teacherName": "Хлобыстова И.Ю.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "БузиковаТА",
+    "teacherFullName": "Бузикова Татьяна Алексеевна",
+    "teacherName": "Бузикова Т.А.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ЖуйковаОА",
+    "teacherFullName": "Жуйкова Ольга Арнольдовна",
+    "teacherName": "Жуйкова О.А.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "КасаткинКА",
+    "teacherFullName": "Касаткин Кирилл Александрович",
+    "teacherName": "Касаткин К.А.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "КорчакЕВ",
+    "teacherFullName": "Корчак Елена Владимировна",
+    "teacherName": "Корчак Е.В.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "КощеевГВ",
+    "teacherFullName": "Кощеев Георгий Викторович",
+    "teacherName": "Кощеев Г.В.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "БуркееваАИ",
+    "teacherFullName": "Буркеева Аида Ильхамовна",
+    "teacherName": "Буркеева А.И.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "КропачевАН",
+    "teacherFullName": "Кропачев Андрей Николаевич",
+    "teacherName": "Кропачев А.Н.",
+    "teacherRank": "к. тех. наук"
+  },
+  {
+    "teacherId": "АктугановаЕН",
+    "teacherFullName": "Актуганова Елена Николаевна",
+    "teacherName": "Актуганова Е.Н.",
+    "teacherRank": "к. тех. наук"
+  },
+  {
+    "teacherId": "КузнецоваНБ",
+    "teacherFullName": "Кузнецова Надежда Борисовна",
+    "teacherName": "Кузнецова Н.Б.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ВараксинаЕИ",
+    "teacherFullName": "Вараксина Екатерина Ивановна",
+    "teacherName": "Вараксина Е.И.",
+    "teacherRank": "д. пед. наук"
+  },
+  {
+    "teacherId": "МайерРВ",
+    "teacherFullName": "Майер Роберт Валерьевич",
+    "teacherName": "Майер Р.В.",
+    "teacherRank": "д. пед. наук"
+  },
+  {
+    "teacherId": "АгафоноваЕС",
+    "teacherFullName": "Агафонова Елена Сергеевна",
+    "teacherName": "Агафонова Е.С.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "КорневЮА",
+    "teacherFullName": "Корнев Юрий Алексеевич",
+    "teacherName": "Корнев Ю.А.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "КалининаЛА",
+    "teacherFullName": "Калинина Любовь Александровна",
+    "teacherName": "Калинина Л.А.",
+    "teacherRank": "к. фил. наук"
+  },
+  {
+    "teacherId": "БогдановаЕЮ",
+    "teacherFullName": "Богданова Елена Юрьевна",
+    "teacherName": "Богданова Е.Ю.",
+    "teacherRank": "к. фил. наук"
+  },
+  {
+    "teacherId": "БогдановаЛА",
+    "teacherFullName": "Богданова Людмила Анатольевна",
+    "teacherName": "Богданова Л.А.",
+    "teacherRank": "к. фил. наук"
+  },
+  {
+    "teacherId": "ЗакироваНН",
+    "teacherFullName": "Закирова Наталия Николаевна",
+    "teacherName": "Закирова Н.Н.",
+    "teacherRank": "к. фил. наук"
+  },
+  {
+    "teacherId": "КасимоваАР",
+    "teacherFullName": "Касимова Альфия Рифхатовна",
+    "teacherName": "Касимова А.Р.",
+    "teacherRank": "к. фил. наук"
+  },
+  {
+    "teacherId": "МараткановаСС",
+    "teacherFullName": "Маратканова Светлана Сергеевна",
+    "teacherName": "Маратканова С.С.",
+    "teacherRank": "к. фил. наук"
+  },
+  {
+    "teacherId": "МартьяноваВН",
+    "teacherFullName": "Мартьянова Вера Николаевна",
+    "teacherName": "Мартьянова В.Н.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ОвченковаОЮ",
+    "teacherFullName": "Овченкова Ольга Юрьевна",
+    "teacherName": "Овченкова О.Ю.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "КуртееваОВ",
+    "teacherFullName": "Куртеева Ольга Валерьевна",
+    "teacherName": "Куртеева О.В.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "МингалеваЛА",
+    "teacherFullName": "Мингалева Лариса Анатольевна",
+    "teacherName": "Мингалева Л.А.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "НикитинаМЛ",
+    "teacherFullName": "Никитина Марина Леонидовна",
+    "teacherName": "Никитина М.Л.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "КолотовМВ",
+    "teacherFullName": "Колотов Матвей Валентинович",
+    "teacherName": "Колотов М.В.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "СкопкареваСЛ",
+    "teacherFullName": "Скопкарева Светлана Леонидовна",
+    "teacherName": "Скопкарева С.Л.",
+    "teacherRank": "к. фил. наук"
+  },
+  {
+    "teacherId": "ИвановаНП",
+    "teacherFullName": "Иванова Наталья Петровна",
+    "teacherName": "Иванова Н.П.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "ЗахарищеваМА",
+    "teacherFullName": "Захарищева Марина Алексеевна",
+    "teacherName": "Захарищева М.А.",
+    "teacherRank": "д. пед. наук"
+  },
+  {
+    "teacherId": "МирошниченкоАА",
+    "teacherFullName": "Мирошниченко Алексей Анатольевич",
+    "teacherName": "Мирошниченко А.А.",
+    "teacherRank": "д. пед. наук"
+  },
+  {
+    "teacherId": "АлександроваИН",
+    "teacherFullName": "Александрова Ирина Николаевна",
+    "teacherName": "Александрова И.Н.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "БаженоваВВ",
+    "teacherFullName": "Баженова Валентина Валерьевна",
+    "teacherName": "Баженова В.В.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "ЗотоваСС",
+    "teacherFullName": "Зотова Светлана Сергеевна",
+    "teacherName": "Зотова С.С.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "ИчетовкинаНМ",
+    "teacherFullName": "Ичетовкина Надежда Михайловна",
+    "teacherName": "Ичетовкина Н.М.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "КолесниковЕА",
+    "teacherFullName": "Колесников Евгений Анатольевич",
+    "teacherName": "Колесников Е.А.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "СкрябинаДЮ",
+    "teacherFullName": "Скрябина Дарья Юрьевна",
+    "teacherName": "Скрябина Д.Ю.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "ВорончихинаОС",
+    "teacherFullName": "Ворончихина Ольга Сергеевна",
+    "teacherName": "Ворончихина О.С.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ГолубеваИА",
+    "teacherFullName": "Голубева Ирина Александровна",
+    "teacherName": "Голубева И.А.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "КубасоваТЮ",
+    "teacherFullName": "Кубасова Татьяна Юрьевна",
+    "teacherName": "Кубасова Т.Ю.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ЛукьяноваТД",
+    "teacherFullName": "Лукьянова Татьяна Дмитриевна",
+    "teacherName": "Лукьянова Т.Д.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "МальцеваЕВ",
+    "teacherFullName": "Мальцева Елена Владимировна",
+    "teacherName": "Мальцева Е.В.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "СуднищиковаАВ",
+    "teacherFullName": "Суднищикова Алена Владимировна",
+    "teacherName": "Суднищикова А.В.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ЧирковаАВ",
+    "teacherFullName": "Чиркова Александра Викторовна",
+    "teacherName": "Чиркова А.В.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "КараваеваЕА",
+    "teacherFullName": "Караваева Елена Александровна",
+    "teacherName": "Караваева Е.А.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ХватаевАН",
+    "teacherFullName": "Хватаев Андрей Николаевич",
+    "teacherName": "Хватаев А.Н.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "АюповаМР",
+    "teacherFullName": "Аюпова Марина Раисовна",
+    "teacherName": "Аюпова М.Р.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "БузанаковаАН",
+    "teacherFullName": "Бузанакова Анна Николаевна",
+    "teacherName": "Бузанакова А.Н.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ВорончихинКЮ",
+    "teacherFullName": "Ворончихин Константин Юрьевич",
+    "teacherName": "Ворончихин К.Ю.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "СандаловИА",
+    "teacherFullName": "Сандалов Илья Андреевич",
+    "teacherName": "Сандалов И.А.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ЧирковАВ",
+    "teacherFullName": "Чирков Алексей Валерьевич",
+    "teacherName": "Чирков А.В.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ФазлееваРР",
+    "teacherFullName": "Фазлеева Рузеля Рустемовна",
+    "teacherName": "Фазлеева Р.Р.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "БияноваЕБ",
+    "teacherFullName": "Биянова Елена Борисовна",
+    "teacherName": "Биянова Е.Б.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "ШкляеваНМ",
+    "teacherFullName": "Шкляева Наталья Михайловна",
+    "teacherName": "Шкляева Н.М.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "ТутолминАВ",
+    "teacherFullName": "Тутолмин Александр Викторович",
+    "teacherName": "Тутолмин А.В.",
+    "teacherRank": "д. пед. наук"
+  },
+  {
+    "teacherId": "КаландароваНН",
+    "teacherFullName": "Каландарова Наталья Ниловна",
+    "teacherName": "Каландарова Н.Н.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "КуликоваТС",
+    "teacherFullName": "Куликова Татьяна Сергеевна",
+    "teacherName": "Куликова Т.С.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "ХорошеваТБ",
+    "teacherFullName": "Хорошева Тамара Брониславовна",
+    "teacherName": "Хорошева Т.Б.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "ДавлетшинаАА",
+    "teacherFullName": "Давлетшина Анна Александровна",
+    "teacherName": "Давлетшина А.А.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "НовиковаЕВ",
+    "teacherFullName": "Новикова Елена Васильевна",
+    "teacherName": "Новикова Е.В.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "СабрековаМС",
+    "teacherFullName": "Сабрекова Мария Сергеевна",
+    "teacherName": "Сабрекова М.С.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "СелуковаНС",
+    "teacherFullName": "Селукова Наталья Сидоровна",
+    "teacherName": "Селукова Н.С.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "УльяноваНС",
+    "teacherFullName": "Ульянова Наталия Сергеевна",
+    "teacherName": "Ульянова Н.С.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "БочкареваМА",
+    "teacherFullName": "Бочкарева Марина Анатольевна",
+    "teacherName": "Бочкарева М.А.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "КасимовВГ",
+    "teacherFullName": "Касимов Валерий Габдулхаевич",
+    "teacherName": "Касимов В.Г.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "БогдановаОВ",
+    "teacherFullName": "Богданова Ольга Викторовна",
+    "teacherName": "Богданова О.В.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ТукмачеваМИ",
+    "teacherFullName": "Тукмачева Марионелла Ивановна",
+    "teacherName": "Тукмачева М.И.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "ЗаверкинаНК",
+    "teacherFullName": "Заверкина Надежда Клеониковна",
+    "teacherName": "Заверкина Н.К.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ПестереваЕЮ",
+    "teacherFullName": "Пестерева Елена Юрьевна",
+    "teacherName": "Пестерева Е.Ю.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ИсуповаЕВ",
+    "teacherFullName": "Исупова Елена Владимировна",
+    "teacherName": "Исупова Е.В.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ДымоваИА",
+    "teacherFullName": "Дымова Ирина Анатольевна",
+    "teacherName": "Дымова И.А.",
+    "teacherRank": "к. медиц. н."
+  },
+  {
+    "teacherId": "ДолженкоАВ",
+    "teacherFullName": "Долженко Анна Владимировна",
+    "teacherName": "Долженко А.В.",
+    "teacherRank": "к. фарм. н."
+  },
+  {
+    "teacherId": "МаксимовЮГ",
+    "teacherFullName": "Максимов Юрий Геннадьевич",
+    "teacherName": "Максимов Ю.Г.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "КорепановГВ",
+    "teacherFullName": "Корепанов Георгий Валериевич",
+    "teacherName": "Корепанов Г.В.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "НаговицынаТФ",
+    "teacherFullName": "Наговицына Татьяна Фоминична",
+    "teacherName": "Наговицына Т.Ф.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ПетроваЗН",
+    "teacherFullName": "Петрова Зульфия Нурисламовна",
+    "teacherName": "Петрова З.Н.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ШиляеваЛВ",
+    "teacherFullName": "Шиляева Лариса Викторовна",
+    "teacherName": "Шиляева Л.В.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ВолковАБ",
+    "teacherFullName": "Волков Алексей Борисович",
+    "teacherName": "Волков А.Б.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ПоздеевНА",
+    "teacherFullName": "Поздеев Никита Алексеевич",
+    "teacherName": "Поздеев Н.А.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ЧупинаТН",
+    "teacherFullName": "Чупина Татьяна Николаевна",
+    "teacherName": "Чупина Т.Н.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ЛюбимоваОВ",
+    "teacherFullName": "Любимова Ольга Вячеславовна",
+    "teacherName": "Любимова О.В.",
+    "teacherRank": "д. пед. наук"
+  },
+  {
+    "teacherId": "БандураНВ",
+    "teacherFullName": "Бандура Николай Васильевич",
+    "teacherName": "Бандура Н.В.",
+    "teacherRank": "к. ист. наук"
+  },
+  {
+    "teacherId": "БарышниковАВ",
+    "teacherFullName": "Барышников Антон Владимирович",
+    "teacherName": "Барышников А.В.",
+    "teacherRank": "к. ист. наук"
+  },
+  {
+    "teacherId": "БлохинИВ",
+    "teacherFullName": "Блохин Игорь Викторович",
+    "teacherName": "Блохин И.В.",
+    "teacherRank": "к. экон. наук"
+  },
+  {
+    "teacherId": "ЗмеевМВ",
+    "teacherFullName": "Змеев Михаил Владимирович",
+    "teacherName": "Змеев М.В.",
+    "teacherRank": "к. социол. н."
+  },
+  {
+    "teacherId": "КабироваИА",
+    "teacherFullName": "Кабирова Ирина Алексеевна",
+    "teacherName": "Кабирова И.А.",
+    "teacherRank": "к. ист. наук"
+  },
+  {
+    "teacherId": "КасимоваДГ",
+    "teacherFullName": "Касимова Диана Габдулловна",
+    "teacherName": "Касимова Д.Г.",
+    "teacherRank": "к. ист. наук"
+  },
+  {
+    "teacherId": "КоролевМА",
+    "teacherFullName": "Королев Максим Андреевич",
+    "teacherName": "Королев М.А.",
+    "teacherRank": "к. ист. наук"
+  },
+  {
+    "teacherId": "ЛихачеваЛА",
+    "teacherFullName": "Лихачева Людмила Александровна",
+    "teacherName": "Лихачева Л.А.",
+    "teacherRank": "к. ист. наук"
+  },
+  {
+    "teacherId": "ПашковаИА",
+    "teacherFullName": "Пашкова Ирина Анатольевна",
+    "teacherName": "Пашкова И.А.",
+    "teacherRank": "к. ист. наук"
+  },
+  {
+    "teacherId": "ПоздееваГГ",
+    "teacherFullName": "Поздеева Галина Геннадьевна",
+    "teacherName": "Поздеева Г.Г.",
+    "teacherRank": "к. филос. н."
+  },
+  {
+    "teacherId": "РубановаИВ",
+    "teacherFullName": "Рубанова Ирина Владимировна",
+    "teacherName": "Рубанова И.В.",
+    "teacherRank": "к. ист. наук"
+  },
+  {
+    "teacherId": "СуховаМВ",
+    "teacherFullName": "Сухова Мария Владимировна",
+    "teacherName": "Сухова М.В.",
+    "teacherRank": "к. ист. наук"
+  },
+  {
+    "teacherId": "БаженовЕН",
+    "teacherFullName": "Баженов Евгений Николаевич",
+    "teacherName": "Баженов Е.Н.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ЗахароваАД",
+    "teacherFullName": "Захарова Анастасия Дмитриевна",
+    "teacherName": "Захарова А.Д.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "КузнецоваЕЛ",
+    "teacherFullName": "Кузнецова Елена Леонидовна",
+    "teacherName": "Кузнецова Е.Л.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "ЩенинаТЕ",
+    "teacherFullName": "Щенина Татьяна Евгеньевна",
+    "teacherName": "Щенина Т.Е.",
+    "teacherRank": "к. юр. наук"
+  },
+  {
+    "teacherId": "ЦыгановОВ",
+    "teacherFullName": "Цыганов Олег Викторович",
+    "teacherName": "Цыганов О.В.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "СалтыковаМВ",
+    "teacherFullName": "Салтыкова Мария Владимировна",
+    "teacherName": "Салтыкова М.В.",
+    "teacherRank": "к. пед.наук"
+  },
+  {
+    "teacherId": "БияноваМВ",
+    "teacherFullName": "Биянова Мария Вадимовна",
+    "teacherName": "Биянова М.В.",
+    "teacherRank": "к. фил.наук"
+  },
+  {
+    "teacherId": "ВозмищеваНВ",
+    "teacherFullName": "Возмищева Наталия Валерьевна",
+    "teacherName": "Возмищева Н.В.",
+    "teacherRank": "к. фил.наук"
+  },
+  {
+    "teacherId": "ЖуйковаЕВ",
+    "teacherFullName": "Жуйкова Елена Васильевна",
+    "teacherName": "Жуйкова Е.В.",
+    "teacherRank": "к. фил.наук"
+  },
+  {
+    "teacherId": "ЕльцоваОВ",
+    "teacherFullName": "Ельцова Ольга Валерьевна",
+    "teacherName": "Ельцова О.В.",
+    "teacherRank": "к. пед.наук"
+  },
+  {
+    "teacherId": "КропачеваМА",
+    "teacherFullName": "Кропачева Марина Александровна",
+    "teacherName": "Кропачева М.А.",
+    "teacherRank": "к. фил.наук"
+  },
+  {
+    "teacherId": "ЛитвиноваЕС",
+    "teacherFullName": "Литвинова Екатерина Сергеевна",
+    "teacherName": "Литвинова Е.С.",
+    "teacherRank": "к. фил.наук"
+  },
+  {
+    "teacherId": "ЛысковаИЮ",
+    "teacherFullName": "Лыскова Ирина Юрьевна",
+    "teacherName": "Лыскова И.Ю.",
+    "teacherRank": "к. фил.наук"
+  },
+  {
+    "teacherId": "ЛюкинаНМ",
+    "teacherFullName": "Люкина Надежда Михайловна",
+    "teacherName": "Люкина Н.М.",
+    "teacherRank": "к. фил.наук"
+  },
+  {
+    "teacherId": "НикифороваОП",
+    "teacherFullName": "Никифорова Ольга Петровна",
+    "teacherName": "Никифорова О.П.",
+    "teacherRank": "к. пед.наук"
+  },
+  {
+    "teacherId": "ПоторочинаГЕ",
+    "teacherFullName": "Поторочина Галина Евгеньевна",
+    "teacherName": "Поторочина Г.Е.",
+    "teacherRank": "к. пед. наук"
+  },
+  {
+    "teacherId": "СмирноваМН",
+    "teacherFullName": "Смирнова Марина Николаевна",
+    "teacherName": "Смирнова М.Н.",
+    "teacherRank": "к. пед.наук"
+  },
+  {
+    "teacherId": "ХватаеваНП",
+    "teacherFullName": "Хватаева Наталия Петровна",
+    "teacherName": "Хватаева Н.П.",
+    "teacherRank": "к. фил.наук"
+  },
+  {
+    "teacherId": "ТаушеваАН",
+    "teacherFullName": "Таушева Александра Николаевна",
+    "teacherName": "Таушева А.Н.",
+    "teacherRank": "к. фил.наук"
+  },
+  {
+    "teacherId": "ИсламоваАР",
+    "teacherFullName": "Исламова Алина Рафкатовна",
+    "teacherName": "Исламова А.Р.",
+    "teacherRank": ""
+  },
+  {
+    "teacherId": "СырманКА",
+    "teacherFullName": "Сырман Кирилл Александрович",
+    "teacherName": "Сырман К.А.",
+    "teacherRank": ""
+  }
+]

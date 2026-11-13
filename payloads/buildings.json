@@ -1,0 +1,22 @@
+[
+  {
+    "buildingId": "1",
+    "buildingName": "1",
+    "buildingAddressText": "Первомайская улица, 25, Глазов, Удмуртская Республика, 427621"
+  },
+  {
+    "buildingId": "2",
+    "buildingName": "2",
+    "buildingAddressText": "Первомайская улица, 25, стр. 1, Глазов, Удмуртская Республика, 427621"
+  },
+  {
+    "buildingId": "3",
+    "buildingName": "3",
+    "buildingAddressText": "улица Карла Маркса, 29, Глазов, Удмуртская Республика, 427621"
+  },
+  {
+    "buildingId": "4",
+    "buildingName": "4",
+    "buildingAddressText": "улица Сулимова, 72, Глазов, Удмуртская Республика, 427627"
+  }
+]

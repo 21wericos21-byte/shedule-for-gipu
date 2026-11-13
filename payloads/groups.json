@@ -1,0 +1,6 @@
+[
+  {"groupId": "113", "groupName": "113", "facultyId": "ЕНиИО", "course": 1, "level": "BACHELOR"},
+  {"groupId": "111", "groupName": "111", "facultyId": "ЕНиИО", "course": 1, "level": "BACHELOR", "subgroups": ["А", "Б"]},
+  {"groupId": "М211", "groupName": "М211", "facultyId": "ЕНиИО", "course": 1, "level": "MASTER"},
+  {"groupId": "СПО113", "groupName": "СПО113", "facultyId": "ЕНиИО", "course": 1, "level": "SPO"}
+]

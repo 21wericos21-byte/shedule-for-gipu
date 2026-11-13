@@ -1,0 +1,661 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- ФИЛЬТРЫ ДЛЯ ПРОСМОТРА -->
+<div class="row mb-3 bg-white p-3 rounded shadow-sm align-items-end">
+    <div class="col-md-3">
+        <label>Факультет (для просмотра)</label>
+        <select id="selFaculty" class="form-select" onchange="loadCourses()">
+            <option value="">Выберите факультет</option>
+            {% for f in faculties %}<option value="{{ f.id }}">{{ f.name }}</option>{% endfor %}
+        </select>
+    </div>
+    <div class="col-md-2">
+        <label>Курс</label>
+        <select id="selCourse" class="form-select" onchange="loadGroups()" disabled>
+            <option value="">Сначала факультет</option>
+            {% for c in courses %}<option value="{{ c }}">{{ c }} курс</option>{% endfor %}
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label>Группа</label>
+        <select id="selGroup" class="form-select" onchange="loadSchedule()" disabled>
+            <option value="">Сначала курс</option>
+        </select>
+    </div>
+    <!-- ПОДГРУППА УДАЛЕНА -->
+    <div class="col-md-3 text-end">
+        <button class="btn btn-success w-100" onclick="openCreateModal()">+ Создать занятие</button>
+    </div>
+</div>
+
+<!-- ПАЛИТРА ЦВЕТОВ -->
+<div id="colorPalette" class="position-absolute bg-white border shadow p-2 rounded" style="z-index: 1050; display: none; grid-template-columns: repeat(5, 1fr); gap: 5px; width: 150px;">
+</div>
+
+<!-- СЕТКА -->
+<table class="table table-bordered text-center align-middle bg-white shadow-sm" id="scheduleGrid">
+    <thead class="table-dark">
+        <tr>
+            <th style="width: 100px;">Пара</th>
+            <th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th>
+        </tr>
+    </thead>
+    <tbody id="gridBody"></tbody>
+</table>
+
+<!-- МОДАЛЬНОЕ ОКНО (осталось без изменений в структуре) -->
+<div class="modal fade" id="eventModal" tabindex="-1">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitle">Создание занятия</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div id="collisionAlert" class="alert alert-danger" style="display:none;"></div>
+        <input type="hidden" id="formSeriesId">
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label>Дисциплина</label>
+                <select id="formDiscipline" class="form-select"></select>
+            </div>
+            <div class="col-md-4">
+                <label>Корпус</label>
+                <select id="formBuilding" class="form-select" onchange="loadRooms()">
+                    <option value="">Выберите корпус</option>
+                    {% for b in buildings %}<option value="{{ b.id }}">{{ b.name }}</option>{% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label>Аудитория</label>
+                <select id="formRoom" class="form-select" onchange="checkCollisions()">
+                    <option value="">Сначала корпус</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3 border-top pt-3 bg-light rounded">
+            <div class="col-md-12 mb-2">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="isFlow" onchange="toggleFlow()">
+                    <label class="form-check-label fw-bold" for="isFlow">Потоковое занятие</label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label>Факультет</label>
+                <select id="formFaculty" class="form-select" onchange="loadFormCourses()">
+                    <option value="">---</option>
+                    {% for f in faculties %}<option value="{{ f.id }}">{{ f.name }}</option>{% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label>Курс</label>
+                <select id="formCourse" class="form-select" onchange="loadFormGroups()" disabled>
+                    <option value="">---</option>
+                    {% for c in courses %}<option value="{{ c }}">{{ c }}</option>{% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-7" id="singleGroupDiv">
+                <label>Группа</label>
+                <select id="formGroupSingle" class="form-select" onchange="loadSubgroupsForForm(); checkCollisions();"></select>
+            </div>
+
+            <div class="col-md-7 d-none" id="multiGroupDiv">
+                <div class="row">
+                    <div class="col-5">
+                        <label>Доступные группы</label>
+                        <select id="availableGroups" class="form-select" multiple size="4" ondblclick="moveToSelected()"></select>
+                    </div>
+                    <div class="col-2 d-flex flex-column justify-content-center align-items-center">
+                        <button type="button" class="btn btn-sm btn-outline-primary mb-2" onclick="moveToSelected()">→</button>
+                        <button type="button" class="btn btn-sm btn-outline-primary" onclick="moveToAvailable()">←</button>
+                    </div>
+                    <div class="col-5">
+                        <label>Выбранные группы</label>
+                        <select id="selectedGroups" class="form-select" multiple size="4" ondblclick="moveToAvailable()"></select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 mt-2">
+                <label>Подгруппа</label>
+                <select id="formSubgroup" class="form-select" onchange="checkCollisions()">
+                    <option value="">Вся группа</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3 border-top pt-3">
+            <div class="col-md-12">
+                <label class="fw-bold mb-2">Дни и параметры</label>
+                <div class="d-flex gap-3 mb-3">
+                    {% for i in range(6) %}
+                    <div class="form-check">
+                        <input class="form-check-input day-checkbox" type="checkbox" value="{{ i }}" id="day{{ i }}" onchange="toggleDay({{ i }}, this.checked)">
+                        <label class="form-check-label" for="day{{ i }}">Пн Вт Ср Чт Пт Сб</label>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div id="daysConfigContainer" class="border rounded p-2 bg-white">
+                    <!-- Строки дней -->
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label>Кол-во недель (для серии)</label>
+                <input type="number" id="formRepeatWeeks" class="form-control" value="16">
+            </div>
+        </div>
+
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-danger d-none" id="btnDelete" onclick="deleteSeries()">Удалить серию</button>
+        <div>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+            <button type="button" class="btn btn-primary" onclick="saveEvent()">Сохранить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const PAIRS = {1:"08:20 - 09:55", 2:"10:05 - 11:40", 3:"12:20 - 13:55", 4:"14:05 - 15:40", 5:"15:50 - 17:25", 6:"17:35 - 19:10"};
+const DAYS = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+const TEACHERS = [
+    {% for t in teachers %}
+    {id: "{{ t.id }}", short_name: "{{ t.short_name }}"},{% endfor %}
+];
+let currentGroupId = "";
+let modalInstance;
+
+// Инициализация при загрузке
+document.addEventListener("DOMContentLoaded", function() {
+    modalInstance = new bootstrap.Modal(document.getElementById('eventModal'));
+    fetch('/api/disciplines').then(r => r.json()).then(data => {
+        const sel = document.getElementById('formDiscipline');
+        data.disciplines.forEach(d => sel.add(new Option(d, d)));
+    });
+
+    document.querySelectorAll('.day-checkbox').forEach((chk, index) => {
+        chk.nextElementSibling.innerText = DAYS[index];
+    });
+
+    const tbody = document.getElementById('gridBody');
+    for(let p=1; p<=6; p++) {
+        let tr = document.createElement('tr');
+        tr.innerHTML = `<td class="fw-bold bg-light">${p} пара<br><small>${PAIRS[p]}</small></td>`;
+        for(let d=0; d<6; d++) {
+            let td = document.createElement('td');
+            td.id = `cell-${d}-${p}`;
+            td.style.height = "90px";
+            td.style.padding = "2px";
+            tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+    }
+
+    // Инициализация палитры
+    const palette = document.getElementById('colorPalette');
+    const PALETTE_COLORS = [
+        '#ffffff', '#ffcdd2', '#f8bbd0', '#e1bee7', '#d1c4e9',
+        '#c5cae9', '#bbdefb', '#b3e5fc', '#b2ebf2', '#b2dfdb'
+    ];
+    PALETTE_COLORS.forEach(color => {
+        const sq = document.createElement('div');
+        sq.style.backgroundColor = color;
+        sq.style.width = '24px';
+        sq.style.height = '24px';
+        sq.style.border = '1px solid #ccc';
+        sq.style.cursor = 'pointer';
+        sq.style.borderRadius = '3px';
+        sq.onclick = () => applyColor(color);
+        palette.appendChild(sq);
+    });
+});
+
+// --- ЛОГИКА ПЕРЕНОСА ГРУПП (ПОТОК) ---
+function moveToSelected() {
+    const avail = document.getElementById('availableGroups');
+    const sel = document.getElementById('selectedGroups');
+    Array.from(avail.selectedOptions).forEach(opt => {
+        sel.add(new Option(opt.text, opt.value));
+        opt.remove();
+    });
+    checkCollisions();
+}
+
+function moveToAvailable() {
+    const avail = document.getElementById('availableGroups');
+    const sel = document.getElementById('selectedGroups');
+    Array.from(sel.selectedOptions).forEach(opt => {
+        avail.add(new Option(opt.text, opt.value));
+        opt.remove();
+    });
+    checkCollisions();
+}
+
+// --- ДНИ И ПРЕПОДАВАТЕЛИ В МОДАЛКЕ ---
+function toggleDay(dayNum, isChecked) {
+    if (isChecked) addDayConfigRow(dayNum);
+    else removeDayConfigRow(dayNum);
+    checkCollisions();
+}
+
+function addDayConfigRow(dayNum, pair=1, week=1, type='Лекция', teacher='') {
+    if(document.getElementById(`day-config-${dayNum}`)) return;
+    let row = document.createElement('div');
+    row.id = `day-config-${dayNum}`;
+    row.className = "row mb-2 align-items-center border-bottom pb-2";
+
+    let optionsPair = [1,2,3,4,5,6].map(p => `<option value="${p}" ${p==pair?'selected':''}>${p} пара</option>`).join('');
+    let optionsWeek = [1,2,3].map(w => `<option value="${w}" ${w==week?'selected':''}>${w==1?'Каждая':(w==2?'Числ':'Знам')}</option>`).join('');
+    let optionsType = ['Лекция','Практика','Лабораторная','Семинар','Зачет','Экзамен','Иное'].map(t => `<option value="${t}" ${t==type?'selected':''}>${t}</option>`).join('');
+    let optionsTeacher = `<option value="">---</option>` + TEACHERS.map(t => `<option value="${t.id}" ${t.id==teacher?'selected':''}>${t.short_name}</option>`).join('');
+
+    row.innerHTML = `
+        <div class="col-md-1 fw-bold text-primary">${DAYS[dayNum]}</div>
+        <div class="col-md-2"><select class="form-select day-pair" onchange="checkCollisions()">${optionsPair}</select></div>
+        <div class="col-md-2"><select class="form-select day-week" onchange="checkCollisions()">${optionsWeek}</select></div>
+        <div class="col-md-2"><select class="form-select day-type">${optionsType}</select></div>
+        <div class="col-md-5"><select class="form-select day-teacher" onchange="checkCollisions()">${optionsTeacher}</select></div>
+    `;
+    document.getElementById('daysConfigContainer').appendChild(row);
+}
+
+function removeDayConfigRow(dayNum) {
+    let row = document.getElementById(`day-config-${dayNum}`);
+    if (row) row.remove();
+}
+
+// --- ОСТАЛЬНЫЕ ФУНКЦИИ ---
+function loadCourses() {
+    const fac = document.getElementById('selFaculty').value;
+    document.getElementById('selCourse').disabled = !fac;
+    document.getElementById('selGroup').disabled = true;
+}
+
+function loadGroups() {
+    const fac = document.getElementById('selFaculty').value;
+    const course = document.getElementById('selCourse').value;
+    fetch(`/api/groups/${fac}/${course}`).then(r => r.json()).then(data => {
+        const gs = document.getElementById('selGroup');
+        gs.innerHTML = '<option value="">Выберите группу</option>';
+        data.groups.forEach(g => gs.add(new Option(g.name, g.id)));
+        gs.disabled = false;
+        loadSchedule(); // Автоматически подгружаем расписание
+    });
+}
+
+// Хелпер для рендера одного события с цветовым квадратом
+function renderEventHTML(e) {
+    const bgColor = e.color || '#ffffff';
+    return `<div class="p-1 text-center position-relative" style="background-color: ${bgColor}; flex: 1; border-bottom: 1px solid #eee;">
+                <b>${e.name}</b><br>${e.room || ''}
+                <div class="color-square"
+                     style="background-color: ${bgColor}; border: 1px solid #999; width: 14px; height: 14px; position: absolute; right: 2px; bottom: 2px; cursor: pointer; border-radius: 2px;"
+                     onclick="event.stopPropagation(); showColorPalette('${e.series_id}', this)">
+                </div>
+            </div>`;
+}
+
+function loadSchedule() {
+    currentGroupId = document.getElementById('selGroup').value;
+    document.querySelectorAll('td[id^="cell-"]').forEach(td => { td.innerHTML = ''; td.onclick = null; });
+    if(!currentGroupId) return;
+
+    fetch(`/api/events/${currentGroupId}`).then(r => r.json()).then(events => {
+        let cells = {};
+        events.forEach(e => {
+            let key = `${e.day}-${e.pair}`;
+            if(!cells[key]) cells[key] = [];
+            cells[key].push(e);
+        });
+
+        for(let key in cells) {
+            const td = document.getElementById(`cell-${key}`);
+            if(!td) continue;
+            const cellEvents = cells[key];
+
+            let html = '<div class="d-flex flex-column h-100 w-100" style="font-size: 11px; line-height: 1.1;">';
+            let every = cellEvents.filter(e => e.week_type == 1);
+            let nums = cellEvents.filter(e => e.week_type == 2);
+            let denoms = cellEvents.filter(e => e.week_type == 3);
+
+            const renderBlock = (evts, label) => {
+                if(evts.length === 0) return '';
+                let blockHtml = `<div style="flex: 1; border-bottom: 1px solid #ccc;" class="d-flex">`;
+                if(label) blockHtml += `<div style="writing-mode: vertical-rl; text-orientation: mixed; background:#eee; padding:2px;">${label}</div>`;
+
+                let subA = evts.filter(e => e.subgroup === 'А');
+                let subB = evts.filter(e => e.subgroup === 'Б');
+                let full = evts.filter(e => !e.subgroup);
+
+                blockHtml += `<div class="d-flex w-100">`;
+                if(full.length > 0) {
+                    blockHtml += `<div class="w-100 d-flex flex-column">` + full.map(renderEventHTML).join('') + `</div>`;
+                } else {
+                    if(subA.length > 0) blockHtml += `<div class="w-50 border-end d-flex flex-column">${subA.map(renderEventHTML).join('')}</div>`;
+                    if(subB.length > 0) blockHtml += `<div class="w-50 d-flex flex-column">${subB.map(renderEventHTML).join('')}</div>`;
+                }
+                blockHtml += `</div></div>`;
+                return blockHtml;
+            };
+
+            if(nums.length > 0 || denoms.length > 0) {
+                html += renderBlock(nums, "Числ");
+                html += renderBlock(denoms, "Знам");
+            } else {
+                html += renderBlock(every, null);
+            }
+            html += '</div>';
+            td.innerHTML = html;
+            td.style.cursor = "pointer";
+            td.onclick = () => openEditModal(cellEvents[0].series_id);
+        }
+    });
+}
+
+// --- ЛОГИКА ПАЛИТРЫ ЦВЕТОВ ---
+let activeSeriesId = null;
+
+function showColorPalette(seriesId, squareEl) {
+    activeSeriesId = seriesId;
+    const palette = document.getElementById('colorPalette');
+    const rect = squareEl.getBoundingClientRect();
+
+    palette.style.display = 'grid';
+    palette.style.left = (window.scrollX + rect.left - 50) + 'px';
+    palette.style.top = (window.scrollY + rect.bottom + 5) + 'px';
+
+    setTimeout(() => {
+        document.addEventListener('click', closePalette);
+    }, 100);
+}
+
+function closePalette(e) {
+    const palette = document.getElementById('colorPalette');
+    if (!palette.contains(e.target)) {
+        palette.style.display = 'none';
+        document.removeEventListener('click', closePalette);
+    }
+}
+
+function applyColor(color) {
+    if(!activeSeriesId) return;
+    fetch('/api/event/color', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({series_id: activeSeriesId, color: color})
+    }).then(r => r.json()).then(res => {
+        if(res.status === 'ok') {
+            document.getElementById('colorPalette').style.display = 'none';
+            document.removeEventListener('click', closePalette);
+            loadSchedule(); // Перезагружаем чтобы отобразить цвет
+        }
+    });
+}
+
+// --- МОДАЛЬНОЕ ОКНО ---
+function toggleFlow() {
+    const isFlow = document.getElementById('isFlow').checked;
+    document.getElementById('singleGroupDiv').classList.toggle('d-none', isFlow);
+    document.getElementById('multiGroupDiv').classList.toggle('d-none', !isFlow);
+}
+
+function loadFormCourses() {
+    const fac = document.getElementById('formFaculty').value;
+    document.getElementById('formCourse').disabled = !fac;
+    document.getElementById('formGroupSingle').innerHTML = '';
+    document.getElementById('availableGroups').innerHTML = '';
+    document.getElementById('selectedGroups').innerHTML = '';
+}
+
+function loadFormGroups(selectedGroupIds = []) {
+    const fac = document.getElementById('formFaculty').value;
+    const course = document.getElementById('formCourse').value;
+    fetch(`/api/groups/${fac}/${course}`).then(r => r.json()).then(data => {
+        const sg = document.getElementById('formGroupSingle');
+        const avail = document.getElementById('availableGroups');
+        const sel = document.getElementById('selectedGroups');
+
+        sg.innerHTML = '<option value="">Выберите группу</option>';
+        avail.innerHTML = '';
+        sel.innerHTML = '';
+
+        data.groups.forEach(g => {
+            sg.add(new Option(g.name, g.id));
+            if(selectedGroupIds.includes(g.id)) {
+                sel.add(new Option(g.name, g.id));
+            } else {
+                avail.add(new Option(g.name, g.id));
+            }
+        });
+    });
+}
+
+function loadSubgroupsForForm() {
+    const gid = document.getElementById('formGroupSingle').value;
+    const ss = document.getElementById('formSubgroup');
+    ss.innerHTML = '<option value="">Вся группа</option>';
+    if(!gid) return;
+    fetch(`/api/subgroups/${gid}`).then(r => r.json()).then(data => {
+        data.subgroups.forEach(s => ss.add(new Option(s.name, s.name)));
+    });
+}
+
+function loadRooms() {
+    const bId = document.getElementById('formBuilding').value;
+    const roomSel = document.getElementById('formRoom');
+    roomSel.innerHTML = '<option value="">Загрузка...</option>';
+    if(!bId) {
+        roomSel.innerHTML = '<option value="">Сначала корпус</option>';
+        return;
+    }
+    fetch(`/api/rooms/${bId}`).then(r => r.json()).then(data => {
+        roomSel.innerHTML = '<option value="">Выберите аудиторию</option>';
+        data.rooms.forEach(r => roomSel.add(new Option(r.name, r.id)));
+        checkCollisions();
+    });
+}
+
+function openCreateModal() {
+    document.getElementById('modalTitle').innerText = "Создание занятия";
+    document.getElementById('formSeriesId').value = "";
+    document.getElementById('btnDelete').classList.add('d-none');
+    document.getElementById('collisionAlert').style.display = 'none';
+
+    document.getElementById('daysConfigContainer').innerHTML = '';
+    document.querySelectorAll('.day-checkbox').forEach(c => c.checked = false);
+
+    document.getElementById('formBuilding').value = "";
+    document.getElementById('formRoom').innerHTML = '<option value="">Сначала корпус</option>';
+    document.getElementById('formFaculty').value = "";
+    document.getElementById('formCourse').value = "";
+    document.getElementById('formCourse').disabled = true;
+    document.getElementById('formGroupSingle').innerHTML = '';
+    document.getElementById('availableGroups').innerHTML = '';
+    document.getElementById('selectedGroups').innerHTML = '';
+    document.getElementById('formSubgroup').innerHTML = '<option value="">Вся группа</option>';
+
+    modalInstance.show();
+}
+
+function openEditModal(seriesId) {
+    document.getElementById('modalTitle').innerText = "Редактирование серии";
+    document.getElementById('btnDelete').classList.remove('d-none');
+    document.getElementById('collisionAlert').style.display = 'none';
+
+    fetch(`/api/event_series/${seriesId}`).then(r => r.json()).then(data => {
+        document.getElementById('formSeriesId').value = data.series_id;
+        document.getElementById('formDiscipline').value = data.name;
+        document.getElementById('formRepeatWeeks').value = data.repeat_weeks;
+        document.getElementById('formSubgroup').innerHTML = `<option value="${data.subgroup || ''}">${data.subgroup || 'Вся группа'}</option>`;
+
+        document.getElementById('daysConfigContainer').innerHTML = '';
+        document.querySelectorAll('.day-checkbox').forEach(c => c.checked = false);
+
+        data.days_data.forEach(dd => {
+            document.getElementById('day' + dd.day).checked = true;
+            addDayConfigRow(dd.day, dd.pair, dd.week_type, dd.type, dd.teacher);
+        });
+
+        if(data.room) {
+            const bId = data.room.split('-')[0];
+            document.getElementById('formBuilding').value = bId;
+            fetch(`/api/rooms/${bId}`).then(r=>r.json()).then(res=>{
+                const rs = document.getElementById('formRoom');
+                rs.innerHTML = '';
+                res.rooms.forEach(r => rs.add(new Option(r.name, r.id)));
+                document.getElementById('formRoom').value = data.room;
+            });
+        } else {
+            document.getElementById('formBuilding').value = "";
+            document.getElementById('formRoom').innerHTML = '<option value="">Сначала корпус</option>';
+        }
+
+        if(data.groups.length > 1) {
+            document.getElementById('isFlow').checked = true;
+            toggleFlow();
+            fetch(`/api/group_details/${data.groups[0]}`).then(r=>r.json()).then(gInfo => {
+                document.getElementById('formFaculty').value = gInfo.faculty_id;
+                loadFormCourses();
+                document.getElementById('formCourse').value = gInfo.course;
+                loadFormGroups(data.groups);
+            });
+        } else {
+            document.getElementById('isFlow').checked = false;
+            toggleFlow();
+            fetch(`/api/group_details/${data.groups[0]}`).then(r=>r.json()).then(gInfo => {
+                document.getElementById('formFaculty').value = gInfo.faculty_id;
+                loadFormCourses();
+                document.getElementById('formCourse').value = gInfo.course;
+                loadFormGroups([]);
+                setTimeout(() => {
+                    document.getElementById('formGroupSingle').value = data.groups[0];
+                    loadSubgroupsForForm();
+                    setTimeout(() => { document.getElementById('formSubgroup').value = data.subgroup || ""; }, 200);
+                }, 300);
+            });
+        }
+
+        modalInstance.show();
+    });
+}
+
+function checkCollisions() {
+    const isFlow = document.getElementById('isFlow').checked;
+    let groups = [];
+    if(isFlow) {
+        groups = Array.from(document.getElementById('selectedGroups').options).map(o => o.value);
+    } else {
+        const g = document.getElementById('formGroupSingle').value;
+        if(g) groups = [g];
+    }
+
+    if(groups.length === 0) return;
+
+    let days_data = [];
+    document.querySelectorAll('#daysConfigContainer > div').forEach(row => {
+        let dayNum = parseInt(row.id.replace('day-config-', ''));
+        days_data.push({
+            day: dayNum,
+            pair: row.querySelector('.day-pair').value,
+            week_type: row.querySelector('.day-week').value,
+            teacher: row.querySelector('.day-teacher').value
+        });
+    });
+
+    if(days_data.length === 0) return;
+
+    const data = {
+        name: document.getElementById('formDiscipline').value,
+        days_data: days_data,
+        groups: groups,
+        subgroup: document.getElementById('formSubgroup').value,
+        room: document.getElementById('formRoom').value
+    };
+
+    if(!data.room && days_data.every(d => !d.teacher)) return;
+
+    fetch('/api/check_collision', {
+        method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)
+    }).then(r => r.json()).then(res => {
+        const alert = document.getElementById('collisionAlert');
+        if(res.status === 'error') {
+            alert.innerText = "⚠️ " + res.reason; alert.style.display = 'block';
+        } else {
+            alert.style.display = 'none';
+        }
+    });
+}
+
+function saveEvent() {
+    const isFlow = document.getElementById('isFlow').checked;
+    let groups = [];
+    if(isFlow) {
+        groups = Array.from(document.getElementById('selectedGroups').options).map(o => o.value);
+        if(groups.length === 0) return alert("Выберите хотя бы одну группу для потока!");
+    } else {
+        const g = document.getElementById('formGroupSingle').value;
+        if(!g) return alert("Выберите группу!");
+        groups = [g];
+    }
+
+    let days_data = [];
+    document.querySelectorAll('#daysConfigContainer > div').forEach(row => {
+        let dayNum = parseInt(row.id.replace('day-config-', ''));
+        days_data.push({
+            day: dayNum,
+            pair: row.querySelector('.day-pair').value,
+            week_type: row.querySelector('.day-week').value,
+            type: row.querySelector('.day-type').value,
+            teacher: row.querySelector('.day-teacher').value
+        });
+    });
+
+    if(days_data.length === 0) return alert("Выберите хотя бы один день недели!");
+
+    const data = {
+        series_id: document.getElementById('formSeriesId').value,
+        name: document.getElementById('formDiscipline').value,
+        days_data: days_data,
+        repeat_weeks: document.getElementById('formRepeatWeeks').value,
+        groups: groups,
+        subgroup: document.getElementById('formSubgroup').value,
+        room: document.getElementById('formRoom').value
+    };
+
+    fetch('/event/save', {
+        method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)
+    }).then(r => {
+        if(!r.ok) throw new Error("Ошибка сервера");
+        return r.json();
+    }).then(res => {
+        if(res.status === 'error') {
+            const alert = document.getElementById('collisionAlert');
+            alert.innerText = "⚠️ " + res.reason; alert.style.display = 'block';
+        } else {
+            modalInstance.hide();
+            loadSchedule();
+        }
+    }).catch(err => {
+        alert("Ошибка при сохранении: " + err.message);
+    });
+}
+
+function deleteSeries() {
+    if(!confirm("Удалить всю серию занятий?")) return;
+    const sid = document.getElementById('formSeriesId').value;
+    fetch(`/event/delete/${sid}`, {method: 'DELETE'}).then(() => {
+        modalInstance.hide();
+        loadSchedule();
+    });
+}
+</script>
+{% endblock %}

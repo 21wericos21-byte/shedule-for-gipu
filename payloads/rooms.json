@@ -1,0 +1,638 @@
+[
+  {
+    "roomId": "1-101",
+    "roomName": "101",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-102",
+    "roomName": "102",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-106",
+    "roomName": "106",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-чит. зал",
+    "roomName": "чит. зал",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-111",
+    "roomName": "111",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-127",
+    "roomName": "127",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-130",
+    "roomName": "130",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-131",
+    "roomName": "131",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-201",
+    "roomName": "201",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-202",
+    "roomName": "202",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-204",
+    "roomName": "204",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-205",
+    "roomName": "205",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-206",
+    "roomName": "206",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-207",
+    "roomName": "207",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-209",
+    "roomName": "209",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-210",
+    "roomName": "210",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-211",
+    "roomName": "211",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-211а",
+    "roomName": "211а",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-212",
+    "roomName": "212",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-219",
+    "roomName": "219",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-222",
+    "roomName": "222",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-228",
+    "roomName": "228",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-229",
+    "roomName": "229",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-231",
+    "roomName": "231",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-232",
+    "roomName": "232",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-234",
+    "roomName": "234",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-235",
+    "roomName": "235",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-236",
+    "roomName": "236",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-237",
+    "roomName": "237",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "1-305",
+    "roomName": "305",
+    "buildingId": "1",
+    "floor": 3
+  },
+  {
+    "roomId": "1-306",
+    "roomName": "306",
+    "buildingId": "1",
+    "floor": 3
+  },
+  {
+    "roomId": "1-308",
+    "roomName": "308",
+    "buildingId": "1",
+    "floor": 3
+  },
+  {
+    "roomId": "1-315",
+    "roomName": "315",
+    "buildingId": "1",
+    "floor": 3
+  },
+  {
+    "roomId": "1-317",
+    "roomName": "317",
+    "buildingId": "1",
+    "floor": 3
+  },
+  {
+    "roomId": "1-319",
+    "roomName": "319",
+    "buildingId": "1",
+    "floor": 3
+  },
+  {
+    "roomId": "1-320",
+    "roomName": "320",
+    "buildingId": "1",
+    "floor": 3
+  },
+  {
+    "roomId": "1-406",
+    "roomName": "406",
+    "buildingId": "1",
+    "floor": 4
+  },
+  {
+    "roomId": "1-409",
+    "roomName": "409",
+    "buildingId": "1",
+    "floor": 4
+  },
+  {
+    "roomId": "1-411",
+    "roomName": "411",
+    "buildingId": "1",
+    "floor": 4
+  },
+  {
+    "roomId": "1-412",
+    "roomName": "412",
+    "buildingId": "1",
+    "floor": 4
+  },
+  {
+    "roomId": "1-413",
+    "roomName": "413",
+    "buildingId": "1",
+    "floor": 4
+  },
+  {
+    "roomId": "1-415",
+    "roomName": "415",
+    "buildingId": "1",
+    "floor": 4
+  },
+  {
+    "roomId": "1-417",
+    "roomName": "417",
+    "buildingId": "1",
+    "floor": 4
+  },
+  {
+    "roomId": "1-418",
+    "roomName": "418",
+    "buildingId": "1",
+    "floor": 4
+  },
+  {
+    "roomId": "1-420",
+    "roomName": "420",
+    "buildingId": "1",
+    "floor": 4
+  },
+  {
+    "roomId": "1-421",
+    "roomName": "421",
+    "buildingId": "1",
+    "floor": 4
+  },
+  {
+    "roomId": "1-422",
+    "roomName": "422",
+    "buildingId": "1",
+    "floor": 4
+  },
+  {
+    "roomId": "1-423",
+    "roomName": "423",
+    "buildingId": "1",
+    "floor": 4
+  },
+  {
+    "roomId": "1-425",
+    "roomName": "425",
+    "buildingId": "1",
+    "floor": 4
+  },
+  {
+    "roomId": "2-9",
+    "roomName": "9",
+    "buildingId": "2",
+    "floor": 1
+  },
+  {
+    "roomId": "2-9а",
+    "roomName": "9а",
+    "buildingId": "2",
+    "floor": 1
+  },
+  {
+    "roomId": "2-10",
+    "roomName": "10",
+    "buildingId": "2",
+    "floor": 1
+  },
+  {
+    "roomId": "2-12",
+    "roomName": "12",
+    "buildingId": "2",
+    "floor": 1
+  },
+  {
+    "roomId": "2-14",
+    "roomName": "14",
+    "buildingId": "2",
+    "floor": 1
+  },
+  {
+    "roomId": "3-107",
+    "roomName": "107",
+    "buildingId": "3",
+    "floor": 1
+  },
+  {
+    "roomId": "3-108",
+    "roomName": "108",
+    "buildingId": "3",
+    "floor": 1
+  },
+  {
+    "roomId": "3-110",
+    "roomName": "110",
+    "buildingId": "3",
+    "floor": 1
+  },
+  {
+    "roomId": "3-112",
+    "roomName": "112",
+    "buildingId": "3",
+    "floor": 1
+  },
+  {
+    "roomId": "3-203",
+    "roomName": "203",
+    "buildingId": "3",
+    "floor": 2
+  },
+  {
+    "roomId": "3-203а",
+    "roomName": "203а",
+    "buildingId": "3",
+    "floor": 2
+  },
+  {
+    "roomId": "3-213",
+    "roomName": "213",
+    "buildingId": "3",
+    "floor": 2
+  },
+  {
+    "roomId": "3-301",
+    "roomName": "301",
+    "buildingId": "3",
+    "floor": 3
+  },
+  {
+    "roomId": "3-303",
+    "roomName": "303",
+    "buildingId": "3",
+    "floor": 3
+  },
+  {
+    "roomId": "3-304",
+    "roomName": "304",
+    "buildingId": "3",
+    "floor": 3
+  },
+  {
+    "roomId": "3-307",
+    "roomName": "307",
+    "buildingId": "3",
+    "floor": 3
+  },
+  {
+    "roomId": "3-310",
+    "roomName": "310",
+    "buildingId": "3",
+    "floor": 3
+  },
+  {
+    "roomId": "3-311",
+    "roomName": "311",
+    "buildingId": "3",
+    "floor": 3
+  },
+  {
+    "roomId": "3-312",
+    "roomName": "312",
+    "buildingId": "3",
+    "floor": 3
+  },
+  {
+    "roomId": "3-313",
+    "roomName": "313",
+    "buildingId": "3",
+    "floor": 3
+  },
+  {
+    "roomId": "3-401",
+    "roomName": "401",
+    "buildingId": "3",
+    "floor": 4
+  },
+  {
+    "roomId": "3-402",
+    "roomName": "402",
+    "buildingId": "3",
+    "floor": 4
+  },
+  {
+    "roomId": "3-403",
+    "roomName": "403",
+    "buildingId": "3",
+    "floor": 4
+  },
+  {
+    "roomId": "3-404",
+    "roomName": "404",
+    "buildingId": "3",
+    "floor": 4
+  },
+  {
+    "roomId": "3-405",
+    "roomName": "405",
+    "buildingId": "3",
+    "floor": 4
+  },
+  {
+    "roomId": "3-408",
+    "roomName": "408",
+    "buildingId": "3",
+    "floor": 4
+  },
+  {
+    "roomId": "3-414",
+    "roomName": "414",
+    "buildingId": "3",
+    "floor": 4
+  },
+  {
+    "roomId": "4-105",
+    "roomName": "105",
+    "buildingId": "4",
+    "floor": 1
+  },
+  {
+    "roomId": "1-уч.к 1",
+    "roomName": "уч.к 1",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-чит.зал",
+    "roomName": "чит.зал",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "3-уч. к 3 зал",
+    "roomName": "уч. к 3 зал",
+    "buildingId": "3",
+    "floor": 1
+  },
+  {
+    "roomId": "3-уч. к 3 414",
+    "roomName": "уч. к 3 414",
+    "buildingId": "3",
+    "floor": 4
+  },
+  {
+    "roomId": "1-чит зал",
+    "roomName": "чит зал",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-225",
+    "roomName": "225",
+    "buildingId": "1",
+    "floor": 2
+  },
+  {
+    "roomId": "3-уч.к №3",
+    "roomName": "уч.к №3",
+    "buildingId": "3",
+    "floor": 1
+  },
+  {
+    "roomId": "1-манеж",
+    "roomName": "манеж",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-с/з",
+    "roomName": "с/з",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-шк 13",
+    "roomName": "шк 13",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-уч.к №1",
+    "roomName": "уч.к №1",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "3-уч.к №3, 412",
+    "roomName": "уч.к №3, 412",
+    "buildingId": "3",
+    "floor": 4
+  },
+  {
+    "roomId": "1-шк №13",
+    "roomName": "шк №13",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-шк №11",
+    "roomName": "шк №11",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-школа №13",
+    "roomName": "школа №13",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "3-спорт.зал №3",
+    "roomName": "спорт.зал №3",
+    "buildingId": "3",
+    "floor": 2
+  },
+  {
+    "roomId": "1-чит. зал №1",
+    "roomName": "чит. зал №1",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-310, уч.к1",
+    "roomName": "310, уч.к1",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-уч к 1",
+    "roomName": "уч к 1",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "1-уч к1",
+    "roomName": "уч к1",
+    "buildingId": "1",
+    "floor": 1
+  },
+  {
+    "roomId": "4-204",
+    "roomName": "204",
+    "buildingId": "4",
+    "floor": 2
+  },
+  {
+    "roomId": "4-202",
+    "roomName": "202",
+    "buildingId": "4",
+    "floor": 2
+  },
+  {
+    "roomId": "4-107",
+    "roomName": "107",
+    "buildingId": "4",
+    "floor": 1
+  },
+  {
+    "roomId": "3-101",
+    "roomName": "101",
+    "buildingId": "3",
+    "floor": 1
+  },
+  {
+    "roomId": "3-308",
+    "roomName": "308",
+    "buildingId": "3",
+    "floor": 3
+  },
+  {
+    "roomId": "3-412",
+    "roomName": "412",
+    "buildingId": "3",
+    "floor": 4
+  },
+  {
+    "roomId": "3-102",
+    "roomName": "102",
+    "buildingId": "3",
+    "floor": 1
+  },
+  {
+    "roomId": "3-спорт.зал №3",
+    "roomName": "спорт.зал №3",
+    "buildingId": "3",
+    "floor": 1
+  },
+  {
+    "roomId": "1-414",
+    "roomName": "414",
+    "buildingId": "1",
+    "floor": 4
+  }
+]

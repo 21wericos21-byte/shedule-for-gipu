@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Панель администратора</h2>
+
+<div class="card mt-4 p-4 mb-4">
+  <h4>Выгрузка данных для API</h4>
+  <p>Нажмите кнопку ниже, чтобы сгенерировать файл <code>export_events.json</code> со всеми парами из базы.</p>
+  <form method="post">
+    <input type="hidden" name="action" value="export">
+    <button type="submit" class="btn btn-primary">Выгрузить JSON</button>
+  </form>
+</div>
+
+<!-- АНАЛИТИКА -->
+<div class="card p-4">
+    <h4 class="mb-4">Аналитика загрузки</h4>
+
+    <ul class="nav nav-tabs mb-3" id="analyticsTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="rooms-tab" data-bs-toggle="tab" data-bs-target="#rooms-pane" type="button" role="tab">Загрузка аудиторий</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="teachers-tab" data-bs-toggle="tab" data-bs-target="#teachers-pane" type="button" role="tab">Загрузка преподавателей</button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="analyticsTabsContent">
+        <!-- ВКЛАДКА: АУДИТОРИИ -->
+        <div class="tab-pane fade show active" id="rooms-pane" role="tabpanel">
+            <div class="row mb-3 align-items-end">
+                <div class="col-md-4">
+                    <label>Корпус</label>
+                    <select id="anaBuilding" class="form-select" onchange="loadAnaRooms()">
+                        <option value="">Выберите корпус</option>
+                        {% for b in buildings %}<option value="{{ b.id }}">{{ b.name }}</option>{% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-5">
+                    <label>Аудитория</label>
+                    <select id="anaRoom" class="form-select" disabled>
+                        <option value="">Сначала корпус</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-success w-100" onclick="loadAnalyticsGrid('room')">Показать загрузку</button>
+                </div>
+            </div>
+            <h5 id="anaRoomTitle" class="text-center text-muted mb-3"></h5>
+            <div id="anaRoomEmpty" class="alert alert-info" style="display:none;">Занятий для этой аудитории не найдено.</div>
+            <table class="table table-bordered text-center align-middle bg-white shadow-sm" id="anaRoomGrid"></table>
+        </div>
+
+        <!-- ВКЛАДКА: ПРЕПОДАВАТЕЛИ -->
+        <div class="tab-pane fade" id="teachers-pane" role="tabpanel">
+            <div class="row mb-3 align-items-end">
+                <div class="col-md-8">
+                    <label>Преподаватель</label>
+                    <select id="anaTeacher" class="form-select">
+                        <option value="">Выберите преподавателя</option>
+                        {% for t in teachers %}<option value="{{ t.id }}">{{ t.short_name }}</option>{% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-success w-100" onclick="loadAnalyticsGrid('teacher')">Показать загрузку</button>
+                </div>
+            </div>
+            <h5 id="anaTeacherTitle" class="text-center text-muted mb-3"></h5>
+            <div id="anaTeacherEmpty" class="alert alert-info" style="display:none;">Занятий для этого преподавателя не найдено.</div>
+            <table class="table table-bordered text-center align-middle bg-white shadow-sm" id="anaTeacherGrid"></table>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS — ОБЯЗАТЕЛЬНО для работы вкладок -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const PAIRS = {1:"08:20 - 09:55", 2:"10:05 - 11:40", 3:"12:20 - 13:55", 4:"14:05 - 15:40", 5:"15:50 - 17:25", 6:"17:35 - 19:10"};
+const DAYS = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб"];
+
+document.addEventListener("DOMContentLoaded", function() {
+    buildEmptyGrid('anaRoomGrid');
+    buildEmptyGrid('anaTeacherGrid');
+});
+
+function buildEmptyGrid(tableId) {
+    const table = document.getElementById(tableId);
+    let html = `<thead class="table-dark"><tr><th style="width: 100px;">Пара</th>`;
+    DAYS.forEach(d => html += `<th>${d}</th>`);
+    html += `</tr></thead><tbody>`;
+
+    for(let p=1; p<=6; p++) {
+        html += `<tr><td class="fw-bold bg-light">${p} пара<br><small>${PAIRS[p]}</small></td>`;
+        for(let d=0; d<6; d++) {
+            html += `<td id="${tableId}-cell-${d}-${p}" style="height: 80px; padding: 2px; font-size: 11px; line-height: 1.1;"></td>`;
+        }
+        html += `</tr>`;
+    }
+    html += `</tbody>`;
+    table.innerHTML = html;
+}
+
+function loadAnaRooms() {
+    const bId = document.getElementById('anaBuilding').value;
+    const roomSel = document.getElementById('anaRoom');
+    roomSel.innerHTML = '<option value="">Загрузка...</option>';
+    roomSel.disabled = true;
+
+    if(!bId) {
+        roomSel.innerHTML = '<option value="">Сначала корпус</option>';
+        return;
+    }
+
+    fetch(`/api/rooms/${bId}`).then(r => r.json()).then(data => {
+        roomSel.innerHTML = '<option value="">Выберите аудиторию</option>';
+        data.rooms.forEach(r => roomSel.add(new Option(r.name, r.id)));
+        roomSel.disabled = false;
+    });
+}
+
+function loadAnalyticsGrid(type) {
+    let id, title, gridId, emptyId;
+
+    if (type === 'room') {
+        const sel = document.getElementById('anaRoom');
+        id = sel.value;
+        if(!id) return alert("Выберите аудиторию!");
+        title = sel.options[sel.selectedIndex].text;
+        document.getElementById('anaRoomTitle').innerText = `Аудитория: ${title} (Корпус ${document.getElementById('anaBuilding').value})`;
+        gridId = 'anaRoomGrid';
+        emptyId = 'anaRoomEmpty';
+    } else {
+        const sel = document.getElementById('anaTeacher');
+        id = sel.value;
+        if(!id) return alert("Выберите преподавателя!");
+        title = sel.options[sel.selectedIndex].text;
+        document.getElementById('anaTeacherTitle').innerText = `Преподаватель: ${title}`;
+        gridId = 'anaTeacherGrid';
+        emptyId = 'anaTeacherEmpty';
+    }
+
+    // Очистка ячеек
+    document.querySelectorAll(`[id^="${gridId}-cell-"]`).forEach(td => td.innerHTML = '');
+    document.getElementById(emptyId).style.display = 'none';
+
+    fetch('/api/analytics/load', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({type: type, id: id})
+    }).then(r => r.json()).then(events => {
+        if(!events || events.length === 0) {
+            document.getElementById(emptyId).style.display = 'block';
+            return;
+        }
+
+        let cells = {};
+        events.forEach(e => {
+            let key = `${e.day}-${e.pair}`;
+            if(!cells[key]) cells[key] = [];
+            cells[key].push(e);
+        });
+
+        for(let key in cells) {
+            const td = document.getElementById(`${gridId}-cell-${key}`);
+            if(!td) continue;
+            const cellEvents = cells[key];
+
+            let html = '<div class="d-flex flex-column h-100 w-100">';
+            let every = cellEvents.filter(e => e.week_type == 1);
+            let nums = cellEvents.filter(e => e.week_type == 2);
+            let denoms = cellEvents.filter(e => e.week_type == 3);
+
+            const renderBlock = (evts, label) => {
+                if(evts.length === 0) return '';
+                let blockHtml = `<div style="flex: 1; border-bottom: 1px solid #ccc; padding: 2px;">`;
+                if(label) blockHtml += `<div style="font-weight: bold; font-size: 9px; background:#eee; margin-bottom: 2px;">${label}</div>`;
+                blockHtml += evts.map(e => `
+                    <div style="background-color: ${e.color || '#fff'}; margin-bottom: 2px; border: 1px solid #ddd; padding: 2px; border-radius: 2px;">
+                        <b>${e.name}</b><br>
+                        <small>Гр: ${e.groups}</small><br>
+                        <small>${type === 'room' ? 'Пр: ' + (e.teacher || '-') : 'Ауд: ' + (e.room || '-')}</small>
+                    </div>
+                `).join('');
+                blockHtml += `</div>`;
+                return blockHtml;
+            };
+
+            if(nums.length > 0 || denoms.length > 0) {
+                html += renderBlock(nums, "Числ");
+                html += renderBlock(denoms, "Знам");
+            } else {
+                html += renderBlock(every, null);
+            }
+            html += '</div>';
+            td.innerHTML = html;
+        }
+    });
+}
+</script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Добавление пары</h2>
+<form method="post" class="card p-4">
+  <div class="row mb-3">
+    <div class="col"><label>Дисциплина</label><input type="text" name="name" class="form-control" required></div>
+    <div class="col"><label>Тип (Лекция/Практика)</label><input type="text" name="type" class="form-control"></div>
+  </div>
+  <div class="row mb-3">
+    <div class="col"><label>Начало</label><input type="datetime-local" name="date_start" class="form-control" required></div>
+    <div class="col"><label>Конец</label><input type="datetime-local" name="date_end" class="form-control" required></div>
+    <div class="col"><label>Конец повторения (дата)</label><input type="datetime-local" name="recurrence_end" class="form-control"></div>
+  </div>
+  <div class="row mb-3">
+    <div class="col">
+      <label>Повторяемость</label>
+      <select name="weekly_recurrence" class="form-select"><option value="1">Каждую неделю</option><option value="2">Раз в 2 недели</option></select>
+    </div>
+    <div class="col">
+      <label>Группа</label>
+      <select name="group_id" class="form-select" required>
+        {% for g in groups %}<option value="{{ g.id }}">{{ g.name }}</option>{% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col">
+      <label>Преподаватель</label>
+      <select name="teacher_id" class="form-select">
+        <option value="">---</option>
+        {% for t in teachers %}<option value="{{ t.id }}">{{ t.short_name }}</option>{% endfor %}
+      </select>
+    </div>
+    <div class="col">
+      <label>Аудитория</label>
+      <select name="room_id" class="form-select">
+        <option value="">---</option>
+        {% for r in rooms %}<option value="{{ r.id }}">{{ r.id }}</option>{% endfor %}
+      </select>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success">Сохранить (Проверить коллизии)</button>
+</form>
+{% endblock %}
